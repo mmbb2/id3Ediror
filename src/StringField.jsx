@@ -25,5 +25,7 @@ export default function StringField({ musicTags, setMusicTags, tag, isInt }) {
     }
   };
 
-  return <TextField value={value} type={isInt ? "number" : "string"} InputProps={isInt ? { inputProps: { min: 0 } } : { inputProps: {} }} onChange={handleChange} variant="outlined" />;
+  return (
+    <TextField sx={{ width: 500 }} value={value} type={isInt ? "number" : "string"} InputProps={isInt ? { inputProps: { min: 0 } } : { inputProps: {} }} onChange={handleChange} variant="outlined" />
+  );
 }

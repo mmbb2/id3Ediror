@@ -5,8 +5,9 @@ import tags from "./tags.json";
 import StringField from "./StringField";
 import StringArrayField from "./StringArrayField";
 import Typography from "@mui/material/Typography";
+import gerTagName from "./gerTagName";
 
-export default function Editor({ musicTags, setMusicTags }) {
+export default function Editor({ musicTags, setMusicTags, isFullname }) {
   const [selectedTag, setSelectedTag] = useState("TPE1");
 
   const handleChange = (e) => {
@@ -19,7 +20,7 @@ export default function Editor({ musicTags, setMusicTags }) {
       if (tags[tag].type !== "object") {
         items.push(
           <MenuItem value={tag} key={tag}>
-            {tag}
+            {gerTagName(tag, isFullname)}
           </MenuItem>
         );
       }
@@ -28,7 +29,7 @@ export default function Editor({ musicTags, setMusicTags }) {
   };
   return (
     <>
-      <Select value={selectedTag} onChange={handleChange}>
+      <Select value={selectedTag} onChange={handleChange} sx={{ width: 500 }}>
         {createItems()}
       </Select>
       <Typography variant="body1" gutterBottom></Typography>

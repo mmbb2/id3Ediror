@@ -25,5 +25,5 @@ export default function StringArrayField({ musicTags, setMusicTags, tag }) {
     }
   };
 
-  return <TextField multiline rows={4} value={value?.join("\n")} onChange={handleChange} variant="outlined" />;
+  return <TextField sx={{ width: 500 }} multiline rows={4} value={value?.join("\n")} onChange={handleChange} variant="outlined" />;
 }

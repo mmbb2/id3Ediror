@@ -5,13 +5,16 @@ import tags from "./tags.json";
 import * as MP3Tag from "mp3tag.js";
 import TagsDisplay from "./TagsDisplay";
 import Button from "@mui/material/Button";
-import Input from "@mui/material/Input";
 import Editor from "./Editor";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Switch from "@mui/material/Switch";
 
 function App() {
   const [musicTags, setMusicTags] = useState({});
   const [arrayBuffer, setArrayBuffer] = useState();
   const [fileName, setFileName] = useState();
+  const [isFullname, setIsFullname] = useState(false);
 
   const handleChande = (e) => {
     const reader = new FileReader();
@@ -82,8 +85,21 @@ function App() {
           <Button variant="contained" onClick={handleSave}>
             Save file
           </Button>
-          <TagsDisplay data={musicTags} />
-          <Editor musicTags={musicTags} setMusicTags={setMusicTags} />
+          <FormGroup>
+            <FormControlLabel
+              control={
+                <Switch
+                  value={isFullname}
+                  onChange={(e) => {
+                    setIsFullname(e.target.checked);
+                  }}
+                />
+              }
+              label="Full/Short tag names"
+            />
+          </FormGroup>
+          <TagsDisplay data={musicTags} isFullname={isFullname} />
+          <Editor musicTags={musicTags} setMusicTags={setMusicTags} isFullname={isFullname} />
         </>
       )}
     </div>
