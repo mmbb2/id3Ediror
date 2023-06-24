@@ -6,6 +6,7 @@ import * as MP3Tag from "mp3tag.js";
 import TagsDisplay from "./TagsDisplay";
 import Button from "@mui/material/Button";
 import Input from "@mui/material/Input";
+import Editor from "./Editor";
 
 function App() {
   const [musicTags, setMusicTags] = useState({});
@@ -59,7 +60,7 @@ function App() {
       const writer = new ID3Writer(arrayBuffer);
 
       for (const tag in musicTags) {
-        writer.setFrame(tag, musicTags[musicTags]);
+        writer.setFrame(tag, musicTags[tag]);
       }
 
       writer.addTag();
@@ -82,6 +83,7 @@ function App() {
             Save file
           </Button>
           <TagsDisplay data={musicTags} />
+          <Editor musicTags={musicTags} setMusicTags={setMusicTags} />
         </>
       )}
     </div>
